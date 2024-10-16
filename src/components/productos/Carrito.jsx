@@ -30,7 +30,7 @@ function Carrito({ carrito, descuento }) {
             <h3 className="font-bold text-4xl">Total</h3>
             <div className="flex gap-2 items-center">
                 <p>${descuento ? carritoDescuento().toLocaleString('es-ES') : carrito.reduce((acum, producto) => acum + producto.precioCantidad, 0).toLocaleString('es-ES')}</p>
-                {descuento ? <p className="text-xs text-gray-500">(Con descuento.)</p> : ''}
+                {descuento ? <p className="text-xs text-gray-300">(Con descuento.)</p> : ''}
             </div>
         </section>
     )

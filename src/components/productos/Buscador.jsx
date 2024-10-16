@@ -2,7 +2,7 @@ import { Input } from "@nextui-org/react"
 import { useState } from "react"
 
 function Buscador() {
-    const [nombre, setNombre] = useState('')
+    const [nombre, setNombre] = useState(null)
 
     const manejarInput = (e) => {
         setNombre(e.target.value)
@@ -16,13 +16,12 @@ function Buscador() {
             let valor = producto.querySelector('h3').innerText.toLowerCase()
             if(nombre.length == 0) {
                 producto.style.display = 'flex!important'
-                return
-            }
-
-            if (valor.includes(nombre) || nombre == '') {
-                producto.style.display = 'flex'
-            } else {
-                producto.style.display = 'none'
+            } else { 
+                if (valor.includes(nombre)) {
+                    producto.style.display = 'flex'
+                } else {
+                    producto.style.display = 'none'
+                }
             }
         })
     }
