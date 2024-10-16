@@ -17,7 +17,7 @@ function Producto({ id, nombre, precio, imagen, añadirProducto }) {
             <img className="max-w-[100px]" src={import.meta.resolve(imagen)} alt={nombre} />
             <h3 className="text-medium font-bold text-center">{nombre}</h3>
             <p>${precio.toLocaleString('es-ES')}</p>
-            <Button onClick={manejarClick} variant="shadow" color="primary" className="font-bold w-full" data-id={id} data-nombre={nombre} data-precio={precio} data-imagen={imagen}>Añadir</Button>
+            <Button onClick={manejarClick} color="primary" className="font-bold w-full" data-id={id} data-nombre={nombre} data-precio={precio} data-imagen={imagen}>Añadir</Button>
         </article>
     )
 }

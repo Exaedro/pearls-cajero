@@ -21,7 +21,7 @@ function Productos({ productos }) {
             }
             return producto;
         });
-    
+
         const estaEnCarrito = carrito.find((producto) => producto.id === id);
     
         if (estaEnCarrito) {
@@ -48,10 +48,9 @@ function Productos({ productos }) {
     const aplicarDescuento = () => {
         setDescuento(!descuento)
     }
-
     return (
         <>
-            <section className="p-4 border border-gray-500 rounded-md">
+            <section className="p-4 border border-gray-500 bg-slate-300/10 rounded-md">
                 <h2 className="text-4xl font-bold pb-4">Productos</h2>
                 <Buscador />
                 <section className="productos flex py-4 gap-5 overflow-x-scroll">
@@ -62,12 +61,12 @@ function Productos({ productos }) {
                 <h2 className="pt-6">Cantidad</h2>
                 <Input type="number" placeholder="Cantidad" defaultValue={1} onChange={(e) => setCantidad(e.target.value)} />
             </section>
-            <section className="p-4 border border-gray-500 rounded-md">
+            <section className="p-4 border border-gray-500 bg-slate-300/10 rounded-md">
                 {descuento ? <Carrito carrito={carrito} descuento={true} /> : <Carrito carrito={carrito} descuento={false} />}
-                <Button color="success" variant="shadow" onClick={aplicarDescuento}>
+                <Button color="success" variant="shadow" className="text-white font-bold" onClick={aplicarDescuento}>
                     {descuento ? 'Remover descuento' : 'Aplicar descuento'}
                 </Button>
-                <Button color="primary" variant="shadow" onClick={reiniciarCarrito}>Reiniciar Carrito</Button>
+                <Button color="danger" variant="shadow" onClick={reiniciarCarrito} className="font-bold ml-2">Reiniciar Carrito</Button>
             </section>
         </>
     )

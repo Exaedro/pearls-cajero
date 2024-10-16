@@ -3,7 +3,7 @@ function Carrito({ carrito, descuento }) {
         let descuento = 0
 
         for(const producto of carrito) {
-            if(producto.nombre.toLowerCase().includes('cajita sorpresa')) {
+            if(producto.nombre.toLowerCase().includes('cajita sorpresa la fete rosa')) {
                 descuento += producto.precioCantidad
                 continue
             }
@@ -21,14 +21,17 @@ function Carrito({ carrito, descuento }) {
                 {carrito.map((producto) => (
                     <article key={producto.id} className="flex flex-col justify-between items-center w-[150px] max-w-[200px] h-[250px] max-h-[250px]">
                         <img className="max-w-[100px]" src={import.meta.resolve(producto.imagen)} alt={producto.nombre} />
-                        <h3 className="text-medium font-bold">{producto.nombre}</h3>
-                        <p>${producto.precioReal.toLocaleString('es-ES')}</p>
+                        <h3 className="text-medium font-bold text-center">{producto.nombre}</h3>
+                        <p>${(producto.precioReal).toLocaleString('es-ES')}</p>
                         <p>{producto.cantidad}</p>
                     </article>
                 ))}
             </section>
             <h3 className="font-bold text-4xl">Total</h3>
-            <p>{descuento ? carritoDescuento().toLocaleString('es-ES') : carrito.reduce((acum, producto) => acum + producto.precioCantidad, 0).toLocaleString('es-ES')}</p>
+            <div className="flex gap-2 items-center">
+                <p>${descuento ? carritoDescuento().toLocaleString('es-ES') : carrito.reduce((acum, producto) => acum + producto.precioCantidad, 0).toLocaleString('es-ES')}</p>
+                {descuento ? <p className="text-xs text-gray-500">(Con descuento.)</p> : ''}
+            </div>
         </section>
     )
 }

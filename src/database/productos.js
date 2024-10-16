@@ -20,5 +20,5 @@ export const productos = [
     { id: 19, nombre: "Ferrero rocher", precio: 200000, imagen: '../../assets/150x150.png'  },
     { id: 20, nombre: "Bombones La fete", precio: 200000, imagen: '../../assets/150x150.png'  },
     { id: 21, nombre: "Frutillas con chocolate", precio: 150000, imagen: '../../assets/150x150.png'  },
-    { id: 21, nombre: "Cajita sorpresa La fete rosa", precio: 3000000, imagen: '../../assets/150x150.png'  }
+    { id: 22, nombre: "Cajita sorpresa La fete rosa", precio: 3000000, imagen: '../../assets/150x150.png'  }
 ];
