@@ -13,7 +13,13 @@ function Buscador() {
         const productos = document.querySelectorAll('.productos article')
 
         productos.forEach((producto) => {
-            if (producto.querySelector('h3').innerText.toLowerCase().includes(nombre)) {
+            let valor = producto.querySelector('h3').innerText.toLowerCase()
+            if(nombre.length == 0) {
+                producto.style.display = 'flex!important'
+                return
+            }
+
+            if (valor.includes(nombre) || nombre == '') {
                 producto.style.display = 'flex'
             } else {
                 producto.style.display = 'none'
