@@ -1,0 +1,21 @@
+function Carrito({ carrito }) {
+    return (
+        <section className="flex flex-col gap-4 py-4">
+            <h2 className="text-center">Carrito</h2>
+            <section className="flex gap-4 overflow-x-scroll">
+                {carrito.map((producto) => (
+                    <article key={producto.id} className="flex flex-col justify-between items-center w-[150px] max-w-[200px] h-[250px] max-h-[250px]">
+                        <img className="max-w-[100px]" src={import.meta.resolve(producto.imagen)} alt={producto.nombre} />
+                        <h3 className="text-medium font-bold">{producto.nombre}</h3>
+                        <p>${producto.precioReal.toLocaleString('es-ES')}</p>
+                        <p>{producto.cantidad}</p>
+                    </article>
+                ))}
+            </section>
+            <h3 className="font-bold text-4xl">Total</h3>
+            <p>{carrito.reduce((acum, producto) => acum + producto.precioCantidad, 0).toLocaleString('es-ES')}</p>
+        </section>
+    )
+}
+
+export default Carrito
