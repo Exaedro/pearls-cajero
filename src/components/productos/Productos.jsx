@@ -7,10 +7,13 @@ import Carrito from "./Carrito.jsx"
 
 function Productos({ productos }) {
     const [carrito, setCarrito] = useState([])
-    const [cantidad, setCantidad] = useState(1)
+    let [cantidad, setCantidad] = useState(1)
     const [descuento, setDescuento] = useState(false)
 
     const añadirProducto = ({ id, nombre, precio, imagen }) => {
+        if(cantidad == '' || cantidad == undefined)
+            cantidad = 1
+
         const carritoActualizado = carrito.map((producto) => {
             if (producto.id === id) {
                 return {
@@ -48,10 +51,20 @@ function Productos({ productos }) {
     const aplicarDescuento = () => {
         setDescuento(!descuento)
     }
+
+    const eliminarDelCarrito = (id) => {
+        const carritoActualizado = carrito.filter(producto => producto.id != id)
+        setCarrito(carritoActualizado)
+    }
+
+    const manejarCantidad = (valor) => {
+        setCantidad(valor)
+    }
+
     return (
         <>
             <section className="p-4 bg-slate-500/30 rounded-md">
-                <h2 className="text-4xl font-bold pb-4">Productos</h2>
+                <h2 className="text-4xl font-bold py-4">Productos</h2>
                 <Buscador />
                 <section className="productos flex py-4 gap-5 overflow-x-scroll">
                     {productos.map((producto) => (
@@ -59,10 +72,10 @@ function Productos({ productos }) {
                     ))}
                 </section>
                 <h2 className="pt-6">Cantidad</h2>
-                <Input type="number" placeholder="Cantidad" defaultValue={1} onChange={(e) => setCantidad(e.target.value)} />
+                <Input type="number" placeholder="Cantidad" min={1} defaultValue={1} onChange={(e) => manejarCantidad(e.target.value)} />
             </section>
-            <section className="p-4 bg-slate-500/30 rounded-md">
-                {descuento ? <Carrito carrito={carrito} descuento={true} /> : <Carrito carrito={carrito} descuento={false} />}
+            <section className="p-4 h-full justify-between flex flex-col bg-slate-500/30 rounded-md">
+                {descuento ? <Carrito carrito={carrito} descuento={true} eliminarDelCarrito={eliminarDelCarrito} /> : <Carrito carrito={carrito} descuento={false} eliminarDelCarrito={eliminarDelCarrito} />}
                 <div className="flex flex-col sm:flex-row gap-2">
                     <Button color="success" variant="shadow" className="text-white font-bold" onClick={aplicarDescuento}>
                         {descuento ? 'Remover descuento' : 'Aplicar descuento'}
